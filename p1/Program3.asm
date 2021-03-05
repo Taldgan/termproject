@@ -30,7 +30,7 @@ loop: lw   $t3, 0($t0)      # Get value from array F[n]
       bgtz $t1, loop        # repeat if not finished yet.
       ########################################################################################################
       la   $t0, ($sp)	    #reset $t0 to top of stack for print
-      la   $a0, ($t0)       # first argument for print (array)  ALTERED: uses addres stored in $t0 instead of fib
+      la   $a0, ($t0)       # first argument for print (array)  ALTERED: uses address stored in $t0 instead of fib
       ########################################################################################################
       add  $a1, $zero, $t5  # second argument for print (size)
       jal  print            # call print routine. 
