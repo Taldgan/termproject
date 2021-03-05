@@ -1,21 +1,20 @@
 # Compute first twenty-five Fibonacci numbers and put in array, then print
 	.data
 prompt:    .asciiz     "Please enter fibonacci number: \n"
-size: .word  25             # size of "array" 
+
       .text
       #####Get input#########################################
       la    $a0,prompt    # display prompt string
       li    $v0,4
       syscall
-      li    $v0,5    # read 1st integer into $t9
+      li    $v0,5    # read array size into $t9
       syscall
-      move  $t0,$v0
+      move  $t9,$v0 
       ######Allocate Stack Space for ###############
-      lw   $t5, $t9        # load array size into $t5
-      addiu $sp, $sp, -($t5)
-      
-
-      la   $t0, $sp        # load address of array (top of stack)
+      move $t5, $t9        #  move user-given array size into $t5
+      mul $t9, $t9, 4	   #multiply 'array size' by 4 to account for word size
+      sub  $sp, $sp, $t9   #allocate space on stack for user-input array size
+      la $t0, ($sp)      # load address of array (top of stack) into $t0
       ######################################################
       li   $t2, 1           # 1 is first and second Fib. number
       add.d $f0, $f2, $f4
@@ -29,7 +28,10 @@ loop: lw   $t3, 0($t0)      # Get value from array F[n]
       addi $t0, $t0, 4      # increment address of Fib. number source
       addi $t1, $t1, -1     # decrement loop counter
       bgtz $t1, loop        # repeat if not finished yet.
-      la   $a0, fibs        # first argument for print (array)
+      ########################################################################################################
+      la   $t0, ($sp)	    #reset $t0 to top of stack for print
+      la   $a0, ($t0)       # first argument for print (array)  ALTERED: uses addres stored in $t0 instead of fib
+      ########################################################################################################
       add  $a1, $zero, $t5  # second argument for print (size)
       jal  print            # call print routine. 
       li   $v0, 10          # system call for exit
