@@ -1,7 +1,7 @@
 # Compute first seventeen Fibonacci numbers and put in array, then print
       .data
-fibs: .word   0 : 17        # "array" of 12 words to contain fib values
-size: .word  17             # size of "array" 
+fibs: .word   0 : 17        # "array" of 17 words to contain fib values ALTERED TO 17
+size: .word  17             # size of "array"  ALTERED TO 17
       .text
       la   $t0, fibs        # load address of array
       la   $t5, size        # load address of size variable

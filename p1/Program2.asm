@@ -1,7 +1,7 @@
 # Compute first twenty-five Fibonacci numbers and put in array, then print
       .data
-fibs: .word   0 : 25        # "array" of 12 words to contain fib values
-size: .word  25             # size of "array" 
+fibs: .word   0 : 25        # "array" of 25 words to contain fib values ALTERED TO 25
+size: .word  25             # size of "array" ALTERED TO 25
       .text
       la   $t0, fibs        # load address of array
       la   $t5, size        # load address of size variable
