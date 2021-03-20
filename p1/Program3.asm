@@ -1,6 +1,6 @@
-# Compute first twenty-five Fibonacci numbers and put in array, then print
+# Compute first n Fibonacci numbers and put in array, then print (based on user-input)
 	.data
-prompt:    .asciiz     "Please enter fibonacci number: \n"
+prompt:    .asciiz     "Please enter fibonacci number: \n" # NEW
 
       .text
       #####Get input#########################################
@@ -10,11 +10,11 @@ prompt:    .asciiz     "Please enter fibonacci number: \n"
       li    $v0,5    # read array size into $t9
       syscall
       move  $t9,$v0 
-      ######Allocate Stack Space for ###############
-      move $t5, $t9        #  move user-given array size into $t5
-      mul $t9, $t9, 4	   #multiply 'array size' by 4 to account for word size
-      sub  $sp, $sp, $t9   #allocate space on stack for user-input array size
-      la $t0, ($sp)      # load address of array (top of stack) into $t0
+      ######Allocate Stack Space for Array ############### NEW
+      move $t5, $t9        # move user-given array size into $t5 NEW
+      mul $t9, $t9, 4	   # multiply 'array size' by 4 to account for word size NEW
+      sub  $sp, $sp, $t9   # allocate space on stack for user-input array size NEW
+      la $t0, ($sp)        # load address of array (top of stack) into $t0 NEW
       ######################################################
       li   $t2, 1           # 1 is first and second Fib. number
       add.d $f0, $f2, $f4
@@ -28,8 +28,8 @@ loop: lw   $t3, 0($t0)      # Get value from array F[n]
       addi $t0, $t0, 4      # increment address of Fib. number source
       addi $t1, $t1, -1     # decrement loop counter
       bgtz $t1, loop        # repeat if not finished yet.
-      ########################################################################################################
-      la   $t0, ($sp)	    #reset $t0 to top of stack for print
+      ######################################################################################################## 
+      la   $t0, ($sp)	    # reset $t0 to top of stack for print NEW
       la   $a0, ($t0)       # first argument for print (array)  ALTERED: uses address stored in $t0 instead of fib
       ########################################################################################################
       add  $a1, $zero, $t5  # second argument for print (size)
