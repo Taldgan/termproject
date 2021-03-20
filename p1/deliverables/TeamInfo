@@ -1,0 +1,34 @@
+Thomas White - yhy312
+ - Implemented the array in the stack based on user input ('Allocate Stack Space for Array' block)
+      ######Allocate Stack Space for Array ############### NEW
+      move $t5, $t9        # move user-given array size into $t5 NEW
+      mul $t9, $t9, 4	   # multiply 'array size' by 4 to account for word size NEW
+      sub  $sp, $sp, $t9   # allocate space on stack for user-input array size NEW
+      la $t0, ($sp)        # load address of array (top of stack) into $t0 NEW
+
+ - Altered starting address for 'print' func NEW/ALTERED in lines 32/33	
+      ------------------------------------------------------------------
+      la   $t0, ($sp)	    # reset $t0 to top of stack for print NEW
+      la   $a0, ($t0)       # first argument for print (array)  ALTERED: uses address stored in $t0 instead of fib
+      ------------------------------------------------------------------
+ - Created term project deliverable
+   
+Stephanie Connolly - pwr781
+ - Altered the necessary values for Program 1 & Program 2
+	------------------------------------------------------------
+	fibs: .word   0 : 17        # "array" of 17 words to contain fib values ALTERED TO 17
+	size: .word  17             # size of "array"  ALTERED TO 17
+	------------------------------------------------------------
+	fibs: .word   0 : 25        # "array" of 25 words to contain fib values ALTERED TO 25
+	size: .word  25             # size of "array" ALTERED TO 25
+	------------------------------------------------------------
+ - Setup user prompt/input into register $t9 ('Get input' block)
+      -------------------------------------------------------
+      #####Get input#########################################
+      la    $a0,prompt    # display prompt string
+      li    $v0,4
+      syscall
+      li    $v0,5    # read array size into $t9
+      syscall
+      move  $t9,$v0 
+      -------------------------------------------------------
