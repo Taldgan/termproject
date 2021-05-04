@@ -1,14 +1,21 @@
-Row-Major:
-	What was the final cache hit rate?: 75%
+Part A:
+	Row-Major:
+		What was the final cache hit rate?: 75%
 
-	what do you predict from 4 to 8: 87.5% (7/8)
-	decreased from 4 to 2?: 50% (1/2)
+		what do you predict from 4 to 8: 87.5% (7/8)
+		decreased from 4 to 2?: 50% (1/2)
 
-Colum-Major:
-	What was the cache performance for this program?: 0%
+	Colum-Major:
+		What was the cache performance for this program?: 0%
 
-	What do you predict from 4 to 8: 87.5% (7/8)
-	What is the cache performance of the original tool?: 0%
-	What is the cache performance of the second tool instance?: 94%
+		What do you predict from 4 to 8: 87.5% (7/8)
+		What is the cache performance of the original tool?: 0%
+		What is the cache performance of the second tool instance?: 94%
+		
+Part B, column-major order:
+	Direct-mapping:
+		8 blocks:
+			- 98%
+		16 blocks:
+			- 98%
 	
-
